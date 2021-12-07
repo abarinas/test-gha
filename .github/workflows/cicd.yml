@@ -1,8 +1,9 @@
 on:
   pull_request:
     branches:
-      - main
-  types: [closed]
+      - master
+    types: [closed]
+
 
 name: deploy
 jobs:
