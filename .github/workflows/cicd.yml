@@ -36,7 +36,7 @@ jobs:
     - name: Update AWS lambda function, with a new container image
       id: update-aws-lambda-function
       env:
-        BASE_IMAGE_URI: ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}
+        BASE_IMAGE_URI: 454473065380.dkr.ecr.us-west-1.amazonaws.com/test-gha
         FUNCTION_NAME: adsk_test_lambda
       run: | 
         aws lambda update-function-code --region $AWS_DEFAULT_REGION --function-name $FUNCTION_NAME --image-uri $BASE_IMAGE_URI:latest
