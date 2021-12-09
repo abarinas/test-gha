@@ -43,7 +43,7 @@ jobs:
     - name: Update AWS lambda function, with a new container image
       id: update-aws-lambda-function
       env:
-        IMAGE_URI: ${{ env.ECR_REGISTRY }}/{{ env.ECR_REPOSITORY }}:latest
+        IMAGE_URI: ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}:latest
         REGION_LAMBDA: us-west-1 
         FUNCTION_NAME: adsk_test_lambda
       run: | 
