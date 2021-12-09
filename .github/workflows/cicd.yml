@@ -1,10 +1,17 @@
-on: push
+on:
+  pull_request:
+    branches:
+      - master
+    types: [closed]
+
+
 name: deploy
 jobs:
   build-and-push:
+    if: ${{ github.event.pull_request.merged }}
     name: build and push image
     runs-on: ubuntu-latest
-
+    
     steps:
     - name: Checkout
       uses: actions/checkout@v2
