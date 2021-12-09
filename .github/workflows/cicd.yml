@@ -1,14 +1,7 @@
-on:
-  pull_request:
-    branches:
-      - master
-    types: [closed]
-
-
+on: push
 name: deploy
 jobs:
   build-and-push:
-    if: ${{ github.event.pull_request.merged }}
     name: build and push image
     runs-on: ubuntu-latest
     
@@ -43,8 +36,7 @@ jobs:
     - name: Update AWS lambda function, with a new container image
       id: update-aws-lambda-function
       env:
-        IMAGE_URI: ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}:latest
-        REGION_LAMBDA: us-west-1 
+        BASE_IMAGE_URI: ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}
         FUNCTION_NAME: adsk_test_lambda
       run: | 
-        aws lambda update-function-code --region $REGION_LAMBDA --function-name $FUNCTION_NAME --image-uri $IMAGE_URI
+        aws lambda update-function-code --region $AWS_DEFAULT_REGION --function-name $FUNCTION_NAME --image-uri $BASE_IMAGE_URI:latest
