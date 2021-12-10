@@ -1,4 +1,4 @@
 import sys
 
 def handler(event, context):
-    return 'Hello aws-ecr-8 from AWS Lambda using Python ' + sys.version + '!'
+    return 'Hello aws-ecr-8  from AWS Lambda using Python ' + sys.version + '!'
